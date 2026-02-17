@@ -15,7 +15,7 @@ const Assessment = () => {
   useEffect(() => {
     const getQuestions = async () => {
       try {
-        const data = await fetchQuizQuestions(20);
+        const data = await fetchQuizQuestions(10);
         if (data && data.length > 0) {
           const formatted = data.map((q) => ({
             question: decodeHtml(q.question),
