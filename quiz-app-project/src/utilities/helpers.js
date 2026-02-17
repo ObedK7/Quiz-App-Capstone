@@ -1,7 +1,7 @@
 // src/utils/helpers.js
 
 /**
- * Decodes HTML entities from a string (e.g., converts &quot; to ")
+ * Decodes HTML entities from a string
  */
 export const decodeHtml = (html) => {
   const txt = document.createElement("textarea");
@@ -10,8 +10,7 @@ export const decodeHtml = (html) => {
 };
 
 /**
- * Shuffles an array using the Fisher-Yates algorithm
- * Useful for mixing correct and incorrect answers
+ * Shuffles an array
  */
 export const shuffleArray = (array) => {
   const shuffled = [...array];
