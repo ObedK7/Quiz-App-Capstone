@@ -1,24 +1,26 @@
-// src/pages/Home.jsx
 import React from "react";
-import Button from "../components/ui/Button"; // Assuming you'll create this
+import { Link } from "react-router-dom";
+import Button from "../components/ui/Button";
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] text-center px-4">
+    <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-6 py-10">
       <header className="space-y-4">
-        <h1 className="text-5xl font-bold text-blue-600 tracking-tight">
+        {/* text-3xl on mobile, text-5xl on desktop */}
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-blue-600 tracking-tight">
           Welcome to Knowledge Engine
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
           A place to test your understanding
         </p>
       </header>
 
-      <main className="mt-10">
-        {/* This is where your Category Search/Selection will go later */}
-        <Button className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-          Start Your Assessment
-        </Button>
+      <main className="mt-10 w-full max-w-xs md:max-w-none">
+        <Link to="/assessment">
+          <Button className="w-full md:w-auto px-10 py-4 text-lg">
+            Start Your Assessment
+          </Button>
+        </Link>
       </main>
     </div>
   );
