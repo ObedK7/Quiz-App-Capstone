@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchQuizQuestions } from "../services/api"; // Check if this needs .js too
-import { decodeHtml, shuffleArray } from "../utilities/helpers.js";
-import useQuiz from "../hooks/useQuiz"; // Added .js if needed
-import QuestionCard from "../components/assessment/QuestionCard.jsx";
-import ProgressBar from "../components/assessment/ProgressBar.jsx";
-import LoadingSpinner from "../components/ui/LoadingSpinner.jsx";
+import { fetchQuizQuestions } from "../services/api";
+import { decodeHtml, shuffleArray } from "../utilities/helpers";
+import useQuiz from "../hooks/useQuiz";
+import QuestionCard from "../components/assessment/QuestionCard";
+import ProgressBar from "../components/assessment/ProgressBar";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 
 const Assessment = () => {
   const [questions, setQuestions] = useState([]);
@@ -15,17 +15,20 @@ const Assessment = () => {
   useEffect(() => {
     const getQuestions = async () => {
       try {
-        const data = await fetchQuizQuestions(10);
-        const formatted = data.map((q) => ({
-          question: decodeHtml(q.question),
-          options: shuffleArray([...q.incorrect_answers, q.correct_answer]).map(
-            (opt) => decodeHtml(opt),
-          ),
-          correctAnswer: decodeHtml(q.correct_answer),
-        }));
-        setQuestions(formatted);
+        const data = await fetchQuizQuestions(20);
+        if (data && data.length > 0) {
+          const formatted = data.map((q) => ({
+            question: decodeHtml(q.question),
+            options: shuffleArray([
+              ...q.incorrect_answers,
+              q.correct_answer,
+            ]).map((opt) => decodeHtml(opt)),
+            correctAnswer: decodeHtml(q.correct_answer),
+          }));
+          setQuestions(formatted);
+        }
       } catch (error) {
-        console.error("Failed to load quiz", error);
+        console.error("Fetch error:", error);
       } finally {
         setLoading(false);
       }
@@ -33,7 +36,6 @@ const Assessment = () => {
     getQuestions();
   }, []);
 
-  // We pass questions here. If it's empty, the hook handles it gracefully.
   const {
     currentQuestion,
     currentIndex,
@@ -51,39 +53,41 @@ const Assessment = () => {
     }
   }, [isFinished, score, navigate, questions.length]);
 
-  // IMPORTANT: Guard Clause
-  if (loading) {
-    return <LoadingSpinner />;
-  }
+  if (loading) return <LoadingSpinner />;
 
-  if (!questions.length) {
+  // CRASH GUARD: If questions didn't load, show this instead of a white page
+  if (!questions || questions.length === 0) {
     return (
-      <div className="text-center py-20">
-        No questions found. Check your connection.
+      <div className="text-center p-10">
+        Questions failed to load. Please refresh.
       </div>
     );
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-6">
+    <div className="w-full max-w-4xl mx-auto p-4">
+      <div className="mb-8">
         <ProgressBar current={currentIndex + 1} total={questions.length} />
-        <div
-          className={`font-mono text-xl font-bold ml-4 ${timeLeft < 5 ? "text-red-500" : "text-blue-600"}`}
-        >
-          {timeLeft}s
-        </div>
       </div>
 
-      {currentQuestion && (
+      <div className="flex justify-end mb-4">
+        <span
+          className={`text-xl font-bold ${timeLeft < 5 ? "text-red-500 animate-pulse" : "text-blue-600"}`}
+        >
+          Timer: {timeLeft}s
+        </span>
+      </div>
+
+      {currentQuestion ? (
         <QuestionCard
           question={currentQuestion.question}
           options={currentQuestion.options}
           onAnswer={(selected) =>
             nextQuestion(selected === currentQuestion.correctAnswer)
           }
-          selectedAnswer={null}
         />
+      ) : (
+        <div>Loading next question...</div>
       )}
     </div>
   );

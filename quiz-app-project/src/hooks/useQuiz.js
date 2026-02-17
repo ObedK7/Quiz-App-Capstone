@@ -1,3 +1,4 @@
+// src/hooks/useQuiz.js
 import { useState, useEffect, useCallback } from "react";
 
 const useQuiz = (questions = []) => {
@@ -21,7 +22,8 @@ const useQuiz = (questions = []) => {
   );
 
   useEffect(() => {
-    if (isFinished || !questions.length) return;
+    // Only start timer if questions exist and game isn't over
+    if (isFinished || !questions || questions.length === 0) return;
 
     if (timeLeft === 0) {
       nextQuestion(false);
