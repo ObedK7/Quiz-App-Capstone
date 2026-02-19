@@ -58,7 +58,7 @@ const Assessment = () => {
   // CRASH GUARD: If questions didn't load, show this instead of a white page
   if (!questions || questions.length === 0) {
     return (
-      <div className="text-center p-10">
+      <div className="text-center p-10 text-black">
         Questions failed to load. Please refresh.
       </div>
     );

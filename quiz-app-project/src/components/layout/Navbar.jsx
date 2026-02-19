@@ -18,7 +18,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="flex items-center gap-4 md:gap-8 font-medium text-sm md:text-base text-gray-600">
-          <Link to="/" className="hover:text-blue-600 transition-colors">
+          <Link to="/" className="hover:text-red-600 transition-colors">
             Home
           </Link>
           <Link to="/history" className="hover:text-blue-600 transition-colors">
@@ -33,7 +33,7 @@ const Navbar = () => {
 
           <Link
             to="/assessment"
-            className="bg-blue-600 text-white px-4 py-2 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-semibold hover:bg-blue-700 shadow-md"
+            className="bg-green-700 text-white px-4 py-2 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-semibold hover:bg--700 shadow-md"
           >
             Start Quiz
           </Link>
