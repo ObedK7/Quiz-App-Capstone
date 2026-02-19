@@ -68,13 +68,13 @@ const Results = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button
             onClick={() => navigate("/assessment")}
-            className="py-4 px-6 bg-blue-600 text-red rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
+            className="py-4 px-6 !bg-red-600 text-red rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
           >
             Try Again
           </button>
           <button
             onClick={() => navigate("/")}
-            className="py-4 px-6 bg-gray-100 text-gray-700 rounded-xl font-bold hover:bg-gray-200 transition-colors"
+            className="py-4 px-6 !bg-blue-600 text-red rounded-xl font-bold hover:bg-gray-200 transition-colors"
           >
             Back to Home
           </button>

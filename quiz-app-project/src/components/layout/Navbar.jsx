@@ -18,22 +18,25 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="flex items-center gap-4 md:gap-8 font-medium text-sm md:text-base text-gray-600">
-          <Link to="/" className="hover:text-blue-600 transition-colors">
+          <Link to="/" className="hover:!text-gray-600 !text-black transition-colors">
             Home
           </Link>
-          <Link to="/history" className="hover:text-blue-600 transition-colors">
+          <Link
+            to="/history"
+            className="hover:!text-gray-600 !text-black transition-colors"
+          >
             History
           </Link>
           <Link
             to="/about"
-            className="hover:text-blue-600 transition-colors hidden sm:block"
+            className="hover:!text-gray-600 !text-black transition-colors hidden sm:block"
           >
             About
           </Link>
 
           <Link
             to="/assessment"
-            className="bg-blue-600 text-white px-4 py-2 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-semibold hover:bg-blue-700 shadow-md"
+            className="bg-green-600 !text-white px-4 py-2 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-semibold hover:bg--700 shadow-md"
           >
             Start Quiz
           </Link>

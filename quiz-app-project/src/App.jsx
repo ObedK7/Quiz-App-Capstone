@@ -16,7 +16,7 @@ function App() {
         The Navbar stays at the top, Footer at the bottom, 
         and the middle section handles the scroll.
       */}
-      <div className="flex flex-col min-h-screen bg-gray-50">
+      <div className="flex flex-col min-h-screen min-w-screen bg-blue-50">
         <Navbar />
 
         {/* max-w-7xl and mx-auto centers your content on large desktops 
