@@ -29,7 +29,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/about"
-            className="hover:!text-gray-600 !text-black transition-colors hidden sm:block"
+            className="hover:!text-gray-600 !text-black transition-colors sm:block"
           >
             About
           </Link>

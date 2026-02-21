@@ -59,7 +59,7 @@ const Assessment = () => {
   if (!questions || questions.length === 0) {
     return (
       <div className="text-center p-10 text-black">
-        Questions failed to load. Please refresh.
+        Opps! Make sure your device is connected to the internet.
       </div>
     );
   }

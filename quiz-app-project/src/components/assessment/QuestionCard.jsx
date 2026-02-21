@@ -24,7 +24,7 @@ const QuestionCard = ({ question, options, onAnswer }) => {
                 {String.fromCharCode(65 + index)}
               </span>
               <span
-                className="text-gray-700 text-sm md:text-base"
+                className="text-sm md:text-base"
                 dangerouslySetInnerHTML={{ __html: option }}
               />
             </div>
