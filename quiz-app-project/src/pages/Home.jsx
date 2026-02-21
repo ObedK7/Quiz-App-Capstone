@@ -17,7 +17,7 @@ const Home = () => {
 
       <main className="mt-10 w-full max-w-xs md:max-w-none">
         <Link to="/assessment">
-          <Button className="w-full md:w-auto px-10 py-4 text-lg text-white bg-black-500">
+          <Button className="w-full md:w-100 px-10 py-4 text-lg text-white bg-black-500">
             Start Quiz.
           </Button>
         </Link>

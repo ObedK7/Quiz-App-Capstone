@@ -22,7 +22,7 @@ function App() {
         {/* max-w-7xl and mx-auto centers your content on large desktops 
            so it doesn't stretch to the very edges of the screen.
         */}
-        <main className="flex-grow w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+        <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/assessment" element={<Assessment />} />

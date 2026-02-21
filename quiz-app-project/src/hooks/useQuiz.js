@@ -5,7 +5,7 @@ const useQuiz = (questions = []) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(15);
+  const [timeLeft, setTimeLeft] = useState(20);
 
   const nextQuestion = useCallback(
     (isCorrect) => {
@@ -13,7 +13,7 @@ const useQuiz = (questions = []) => {
 
       if (currentIndex + 1 < questions.length) {
         setCurrentIndex((prev) => prev + 1);
-        setTimeLeft(15);
+        setTimeLeft(20);
       } else {
         setIsFinished(true);
       }
