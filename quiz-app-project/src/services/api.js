@@ -1,34 +1,44 @@
-// src/services/api.js
-
-const BASE_URL = "https://opentdb.com/api.php";
-
-/**
- * Fetches questions from the Open Trivia DB
- * @param {number} amount - Number of questions (default 10)
- * @param {string} category - Category ID
- * @param {string} difficulty - easy, medium, or hard
- */
 export const fetchQuizQuestions = async (
   amount = 10,
   category = "",
-  difficulty = "",
+  difficulty = "medium",
+  retries = 3,
 ) => {
   try {
-    // Construct the URL with parameters
-    const url = `${BASE_URL}?amount=${amount}${category ? `&category=${category}` : ""}${difficulty ? `&difficulty=${difficulty}` : ""}&type=multiple`;
+    const categoryParam = category ? `&category=${category}` : "";
 
-    const response = await fetch(url);
+    // Attempt 1: Specific category and difficulty
+    let url = `https://opentdb.com/api.php?amount=${amount}${categoryParam}&difficulty=${difficulty}&type=multiple`;
+    console.log(`Fetching from: ${url}`);
 
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
+    let response = await fetch(url);
+    let data = await response.json();
+
+    // If success, return data
+    if (data.response_code === 0) return data.results;
+
+    // If API limit reached (code 5) or no results (code 1), try a broader search
+    if (data.response_code === 1 || data.response_code === 5) {
+      console.warn("API restricted, trying broader search...");
+
+      // Attempt 2: Same category, any difficulty
+      url = `https://opentdb.com/api.php?amount=${amount}${categoryParam}&type=multiple`;
+      response = await fetch(url);
+      data = await response.json();
+
+      if (data.response_code === 0) return data.results;
     }
 
-    const data = await response.json();
+    // If we still don't have data and have retries left, try again in 1 second
+    if (retries > 0) {
+      console.log(`Retrying... (${retries} attempts left)`);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return fetchQuizQuestions(amount, category, difficulty, retries - 1);
+    }
 
-    // The API returns an array in data.results
-    return data.results;
+    return []; // Return empty if truly failed
   } catch (error) {
-    console.error("Error fetching questions:", error);
+    console.error("API Error:", error);
     return [];
   }
 };
