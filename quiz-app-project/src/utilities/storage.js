@@ -22,7 +22,7 @@ export const saveQuizResult = (result) => {
     localStorage.setItem(HISTORY_KEY, JSON.stringify(updatedHistory));
     console.log("✅ Quiz saved to storage!");
   } catch (error) {
-    console.error("❌ Storage Save Error:", error);
+    console.error("Storage Save Error:", error);
   }
 };
 
@@ -32,7 +32,7 @@ export const getQuizHistory = () => {
     const data = localStorage.getItem(HISTORY_KEY);
     return data ? JSON.parse(data) : [];
   } catch (error) {
-    console.error("❌ Storage Read Error:", error);
+    console.error("Storage Read Error:", error);
     return [];
   }
 };

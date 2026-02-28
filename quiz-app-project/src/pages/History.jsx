@@ -7,7 +7,6 @@ const History = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Load data when the page opens
     const data = getQuizHistory();
     setHistory(data);
   }, []);

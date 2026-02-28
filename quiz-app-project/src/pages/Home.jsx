@@ -66,7 +66,7 @@ const Home = () => {
                   Category
                 </label>
                 <select
-                  // --- STYLE CHANGE HERE (bg-white, text-black) ---
+                
                   className="w-full p-3 border-2 border-gray-100 rounded-xl focus:border-blue-500 outline-none bg-white text-black"
                   value={config.category}
                   onChange={(e) =>

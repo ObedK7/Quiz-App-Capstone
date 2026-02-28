@@ -29,14 +29,14 @@ export const fetchQuizQuestions = async (
       if (data.response_code === 0) return data.results;
     }
 
-    // If we still don't have data and have retries left, try again in 1 second
+  
     if (retries > 0) {
       console.log(`Retrying... (${retries} attempts left)`);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       return fetchQuizQuestions(amount, category, difficulty, retries - 1);
     }
 
-    return []; // Return empty if truly failed
+    return []; 
   } catch (error) {
     console.error("API Error:", error);
     return [];

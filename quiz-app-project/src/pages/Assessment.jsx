@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { fetchQuizQuestions } from "../services/api";
 import { decodeHtml, shuffleArray } from "../utilities/helpers.js";
 import { saveQuizResult } from "../utilities/storage";
-import useQuiz from "../hooks/useQuiz"; // Assuming this hook handles timer internally
+import useQuiz from "../hooks/useQuiz";
 import QuestionCard from "../components/assessment/QuestionCard";
 import ProgressBar from "../components/assessment/ProgressBar";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
@@ -17,7 +17,7 @@ const Assessment = () => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 1. Fetch Questions
+ 
   useEffect(() => {
     let isMounted = true;
     const getQuestions = async () => {
@@ -45,7 +45,6 @@ const Assessment = () => {
     };
   }, [category, difficulty]);
 
-  // 2. Quiz Engine Hook
   const {
     currentQuestion,
     currentIndex,
@@ -55,7 +54,6 @@ const Assessment = () => {
     nextQuestion,
   } = useQuiz(questions);
 
-  // 3. Completion Logic (Saves to History)
   useEffect(() => {
     if (isFinished && questions.length > 0) {
       saveQuizResult({
@@ -70,7 +68,6 @@ const Assessment = () => {
     }
   }, [isFinished, score, questions.length, categoryName, difficulty, navigate]);
 
-  // 4. Render States
   if (loading) return <LoadingSpinner />;
 
   if (!questions || questions.length === 0) {
@@ -86,13 +83,11 @@ const Assessment = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      {/* Status Bar Container */}
       <div className="mb-6 flex flex-col md:flex-row md:items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
         <div className="grow">
           <ProgressBar current={currentIndex + 1} total={questions.length} />
         </div>
 
-        {/* Timer UI Element - Perfectly aligned to the right edge */}
         <div
           className={`font-mono text-xl font-black ${timeLeft < 10 ? "text-red-600 animate-pulse" : "text-blue-600"} flex items-center gap-2 justify-center md:justify-end`}
         >
@@ -103,7 +98,7 @@ const Assessment = () => {
         </div>
       </div>
 
-      {/* Question Card */}
+     
       {currentQuestion && (
         <QuestionCard
           question={currentQuestion.question}

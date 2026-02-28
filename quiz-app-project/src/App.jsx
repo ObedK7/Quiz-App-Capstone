@@ -12,16 +12,11 @@ import About from "./pages/About";
 function App() {
   return (
     <Router>
-      {/* h-screen + flex-col ensures the page always fills the window.
-        The Navbar stays at the top, Footer at the bottom, 
-        and the middle section handles the scroll.
-      */}
+      
       <div className="flex flex-col min-h-screen min-w-screen bg-blue-50">
         <Navbar />
 
-        {/* max-w-7xl and mx-auto centers your content on large desktops 
-           so it doesn't stretch to the very edges of the screen.
-        */}
+      
         <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
           <Routes>
             <Route path="/" element={<Home />} />
