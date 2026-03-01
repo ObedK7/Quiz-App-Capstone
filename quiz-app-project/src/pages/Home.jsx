@@ -45,7 +45,7 @@ const Home = () => {
       <main className="mt-10">
         <Button
           onClick={() => setShowModal(true)}
-          className="px-10 py-4 text-lg text-white bg-black hover:bg-gray-800"
+          className="min-w-80 px-10 py-4 text-lg text-white bg-black hover:bg-gray-800"
         >
           Start Quiz.
         </Button>
