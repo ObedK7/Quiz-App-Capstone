@@ -67,7 +67,7 @@ const Home = () => {
                 </label>
                 <select
                 
-                  className="w-full p-3 border-2 border-gray-100 rounded-xl focus:border-blue-500 outline-none bg-white text-black"
+                  className="w-full p-3 border-2 border-gray-100 rounded-xl focus:border-blue-500 outline-none bg-black-700 text-black"
                   value={config.category}
                   onChange={(e) =>
                     setConfig({ ...config, category: e.target.value })
